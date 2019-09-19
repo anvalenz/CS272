@@ -1,0 +1,258 @@
+package Lab2;
+
+import java.io.*;
+import java.util.Arrays;
+
+
+
+public class EmployeeSet {
+	
+	//question 1
+	int capacity;
+	Employee[] collection;
+	int size;
+	
+	//question 2 no argument set function to set the capacity to 10
+	public EmployeeSet(){
+
+	collection = new Employee[10];
+
+	}//end of employee set
+
+	//copy constructor that copies employee set into new instance
+	/*
+	 * @precondition obj can't be null
+	 */
+	public EmployeeSet(Object obj){
+		if(obj == null)
+			throw new IllegalArgumentException("obj cant be null");
+		if(obj instanceof EmployeeSet)
+			throw new IllegalArgumentException("obj cant be instance of Employee Set");
+		if(!(obj instanceof EmployeeSet)) {
+			
+			capacity = ((EmployeeSet)obj).capacity();
+			
+			size = ((EmployeeSet)obj).size();
+			for(int i=0;i <= 10; i++) {
+			collection = ((EmployeeSet)obj).collection();
+			}//end of for
+	}//end of public employeeset copy constructor
+	}
+
+	private Employee[] collection() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	//question 4 return the number of elements in the array
+	public int size(){
+		
+			size =0;
+			
+			for(int i=0; i < capacity; i++ ) {
+				
+				if(collection[i] != null)
+					size++;
+				
+				
+			}//end of for loop 
+			
+			return size;
+	
+	}//end of size
+
+
+	//question 5 return the size of the array 
+	public int capacity(){
+		
+		capacity = collection.length;
+		return capacity;
+	
+	}//end of capacity
+
+	//precondition is employee object can't be null. This adds an employee object to the first space available in employeeset array instance. If enough space the employee is added if not the array space must be doubled using ensurecapacity
+	/*
+	 * @precondition a can't be null
+	 */
+	public void add(Employee a){
+		
+		if(a == null)
+			throw new IllegalArgumentException("Employee can't be null");
+		
+		if(size < collection.length) {
+			
+			collection[size()] = a;
+			size++;
+			
+		}//end of capacity
+		else {
+			
+			ensureCapacity(capacity()*2);
+			collection[size()] = a;
+		}
+		
+
+
+	}//end of add
+	//checks if the object is null = false, object not null = if collection contains employee then true else false
+	/*
+	 * @precondition a can't be null
+	 */
+	public boolean contains(Employee a){
+		if(a == null)
+			
+			return false;
+		if (a != null) {
+			
+			for(int i=0; i < size;  i++ ) {
+				if(collection[i] == a)
+					return true;
+			}//end of for
+			
+		}
+		
+		
+		return false;
+	}//end of contains
+	
+	//remove employee no eno from collections
+	public boolean remove(int eno){
+
+		for(int i =0; i < size; i++) {
+			
+			if(collection[i].equals(eno)) {
+				
+				collection[i] = collection[size -1];
+				collection[size -1] = null;
+				return true;
+				
+			}//end of if
+			
+		}//end of for
+		
+		return false;//if not true then false
+				
+	}//end of remove
+	/*
+	 * @precondition minimumcapacity can not be less than 0
+	 */
+	private void ensureCapacity(int minimumCapacity) {
+		if(minimumCapacity <0)
+			throw new IllegalArgumentException("minimumCapacity can't be lower than zero");
+			
+		if(capacity <= minimumCapacity) {
+			
+			Employee array[] = new Employee[minimumCapacity];//
+			
+			for (int i = 0; i < size; i++)
+			{
+				array[i] = collection[i];
+			}
+			collection = array;
+			capacity = capacity * 2;
+			
+		}//end of if
+		
+
+		
+	}
+	//object cant be null employee no in ascending order. Add employee no to organized array
+	public void addordered(Employee a){
+		
+		if(a == null)
+			throw new IllegalArgumentException("a can't be null");
+		
+		Arrays.sort(collection); 
+ 
+		
+		if(size >= capacity()) {
+			
+				ensureCapacity(capacity()*2);//double the space of capacity
+		}//end of if
+
+
+	}//end of addordered
+
+	public static void main(String[]args){
+		
+		Employee e1 = new Employee();
+		Employee e2 = new Employee();
+		
+		
+		EmployeeSet eset1 = new EmployeeSet();
+	
+		e1.setname("Anissa Valenzuela");
+		e1.setno(3);
+		e1.setage(20);
+		e1.setstate("NM");
+		e1.setzip(88007);
+		eset1.add(e1);
+	
+		
+		
+		System.out.println(e1);
+		eset1.add(e1);
+		System.out.println(eset1.size);
+		System.out.println(eset1.capacity);
+		
+		
+		
+		//set up employee 1
+	
+
+		
+		
+		String csvFile = "/home/ugrad27/avalenzu/workspace/Lab1_272/core_dataset.csv";
+		BufferedReader br = null;
+		String line = "";
+		String cvsSplitBy= ",";
+		
+		
+		try {
+			
+			Writer writer = new BufferedWriter(new OutputStreamWriter(
+					
+		    new FileOutputStream("core_dataset.csv")));
+			br = new BufferedReader(new FileReader(csvFile));
+			
+			
+			while((line = br.readLine()) != null) {
+				
+				String [] employee = line.split(cvsSplitBy);
+				
+				if (employee.length == 0)
+				{
+					continue;
+				}
+				
+				
+				writer.write(employee[0] + employee[1]+ "\t" +employee[2]+ "\t" +employee[3]+ "\t" +employee[4]+ "\t");//end of for
+	
+			}//end of while
+			writer.close();
+		}
+			
+		
+			catch (FileNotFoundException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        } finally {
+	            if (br != null) {
+	                try {
+	                    br.close();
+	                } catch (IOException e) {
+	                    e.printStackTrace();
+	                }
+		
+		
+	
+	
+		
+	}
+	            
+	        }
+	}//end of main
+
+
+}
