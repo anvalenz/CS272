@@ -1,0 +1,80 @@
+package Lab7;
+
+import java.util.*;
+
+public class StackTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Stack stack = new Stack();
+		
+		stack.push(4);
+		stack.push(2);
+		stack.push(7);
+		stack.push(5);
+		
+		System.out.println("Print the Stack: " +stack);
+		System.out.println("Size of Stack: " + stack.size());
+		System.out.println("Top of Stack is: " + stack.peek());
+		System.out.println("Is empty? " + stack.isEmpty());
+		System.out.println();
+		
+		stack.pop();
+		
+		System.out.println("Print the Stack after pop: " +stack);
+		System.out.println("Size of Stack: " + stack.size());
+		System.out.println("Top of stack is: " + stack.peek());
+		System.out.println("Is empty? " + stack.isEmpty());
+		System.out.println();
+		
+		stack.pop();
+		stack.pop();
+		stack.pop();
+		System.out.println("pop out all of the ints");
+		System.out.println("Is empty? " + stack.isEmpty());
+		System.out.println();
+		
+		
+		Stack stack2 = new Stack();
+		
+		stack2.push('a');
+		stack2.push('b');
+		stack2.push('c');
+		stack2.push('d');
+		
+		System.out.println("Print the Stack: " +stack2);
+		System.out.println("Size of Stack: " + stack2.size());
+		System.out.println("Top of Stack is: " + stack2.peek());
+		System.out.println("Is empty? " + stack2.isEmpty());
+		System.out.println();
+		
+		stack2.pop();
+		
+		System.out.println("Print the Stack after pop: " +stack2);
+		System.out.println("Size of Stack: " + stack2.size());
+		System.out.println("Top of stack is: " + stack2.peek());
+		System.out.println();
+		
+		StackInterface <Integer> array1 = new ArrraylistStack();
+		
+		array1.push(2);
+		array1.push(3);
+		
+		System.out.println("Print the Stack:  " +array1); //not entirely sure why its not printing, prints: Lab7.ArrraylistStack@3f3afe78 
+		System.out.println("Size of Stack: " + array1.size());
+		System.out.println("Top of stack is: " + array1.peek());
+		System.out.println("Is empty? " + array1.isEmpty());
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+	}
+
+}
