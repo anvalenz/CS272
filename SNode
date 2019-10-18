@@ -1,0 +1,52 @@
+package Lab7;
+
+public class SNode<E> {
+	
+	E data;
+	SNode<E> link;
+	
+	public SNode(E _data, SNode<E> _link) {
+		// TODO Auto-generated constructor stub
+		data = _data;
+		link = _link;
+	}
+	public SNode <E> getLink(){
+		
+		return link;
+		
+	}
+	public E getData() {
+		// TODO Auto-generated method stub
+		return data;
+	}
+	public void setData(E _data) {
+		
+		data = _data;
+		
+	}
+	public void setLink(SNode<E> _link) {
+		
+		link = _link;
+	}
+	
+	public int listLength() {
+		
+		SNode cursor = (SNode) data;
+		int count = 0;
+		
+		while(cursor != null) 
+		{
+			count++;
+			cursor = cursor.getNext();
+		}
+		
+		return count;
+	}//end of listLength
+	private SNode <E> getNext() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+		
+	
+}
