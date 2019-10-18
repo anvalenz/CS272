@@ -1,0 +1,41 @@
+package Lab7;
+import java.util.*;
+
+
+
+public class ArrraylistStack<E> implements StackInterface <E> {
+	
+    private ArrayList stack = new ArrayList();
+	
+	@Override
+	public void push(E e) {
+		// TODO Auto-generated method stub
+		stack.add(e);
+	}
+
+	@Override
+	public E pop() {
+     if (stack.isEmpty())
+        throw new EmptyStackException();
+     return (E) stack.remove(stack.size()-1);
+	}
+
+	@Override
+	public E peek() {
+		// TODO Auto-generated method stub
+		return (E) (stack.get(stack.size()-1));
+	}
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return stack.size();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return stack.isEmpty();
+	}
+
+}
